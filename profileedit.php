@@ -18,21 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  if(!$password){
    $errors['password']= 'Required password';
  }
-  if(count($errors)==0){
-    $sql="Select * From customer where `name`='$name' and `password`='$password'" ;
-    $result=mysqli_query($connection,$sql);
-    if (mysqli_num_rows($result) > 0) {
-      $errors['alert'] = 'The password is already taken try another!';}
-      else{
-      $query="Update customer Set `password`='$password'  where `id`=$id";
-      $go_query=mysqli_query($connection,$query);}
-      if($go_query){
-        $errors['success']='Your  password changed successfully';
-      }
+  
+    if (count($errors) == 0) {
+      $query = "UPDATE customer SET `name`='$name', `password`='$password' WHERE `id`='$id'";
+      $go_query = mysqli_query($connection, $query);
+      
       redirect('./profile.php');
     }
   }
-  
+
  
 
 

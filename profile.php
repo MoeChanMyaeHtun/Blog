@@ -19,7 +19,7 @@ if(!isset($_SESSION['auth'])) {
                     </ul>
                 </div>
                 <div class="card-footer">
-                    <a href="/project/profileedit.php" class="btn btn-success">Edit</a>
+                    <a href="/blog/profileedit.php" class="btn btn-success">Edit</a>
                 </div>
             </div>
         </div>
