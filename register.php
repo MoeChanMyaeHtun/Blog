@@ -38,7 +38,7 @@ include app_path('middleware/guest.php');
     
     if(count($errors) == 0) {
         $sql = "INSERT INTO  customer (`name`,`password`,`email`,`phone`,`address`)values('$user_name','$password','$email','$phone','$address')";
-        $result = mysqli_query($connection, $sql);
+        $result = mysqli_query($conn, $sql);
         if($result) {
             redirect('login.php');
         }

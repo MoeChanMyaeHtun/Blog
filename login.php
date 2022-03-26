@@ -17,7 +17,7 @@
 
     if (count($errors) == 0) {
       $sql = "SELECT * FROM customer WHERE `email`='$email' and `password`='$password'";
-      $result = mysqli_query($connection, $sql);
+      $result = mysqli_query($conn, $sql);
 
       if ($user = mysqli_fetch_assoc($result)) {
         $_SESSION['auth'] = [

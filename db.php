@@ -7,6 +7,6 @@ define('DB_PASS', '');
 define('DB_NAME', 'blog');
 define('DB_PORT', '3306');
 
-$connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 
 ?>

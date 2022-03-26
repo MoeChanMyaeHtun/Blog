@@ -1,33 +1,35 @@
 <?php
 include_once './init.php';
+
 include app_path('middleware/auth.php');
 
-
+$id = $_SESSION['auth']['id'];
+$sql = "SELECT * FROM customer WHERE id='$id'";
+$result = mysqli_query($conn, $sql);
+$user = mysqli_fetch_assoc($result);
 
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $name=$_POST['name'];
-  $password=$_POST['password'];
-  $id=$_POST['id'];
+  $name = $_POST['name'];
+  $password = $_POST['password'];
 
-  if(!$name){
-    $errors['name']= 'Required name';
+  if (!$name) {
+    $errors['name'] = 'The name is required.';
   }
- if(!$password){
-   $errors['password']= 'Required password';
- }
-  
-    if (count($errors) == 0) {
-      $query = "UPDATE customer SET `name`='$name', `password`='$password' WHERE `id`='$id'";
-      $go_query = mysqli_query($conn, $query);
-      
-      redirect('./profile.php');
+
+  if (count($errors) == 0) {
+    if ($password) {
+      $sql = "UPDATE customer SET `name`='$name', `password`='$password' where `id`='$id'";
+    } else {
+      $sql = "UPDATE customer SET `name`='$name' where `id`='$id'";
     }
+
+    $result = mysqli_query($conn, $sql);
+
+    redirect('profile-edit.php');
   }
-
- 
-
+}
 
 ?>
 <?php include './header.php' ?>
@@ -39,11 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="card mt-5">
         <div class="card-body">
           <form method="POST">
-            <input type="hidden" name="id" value="<?php echo $_SESSION['auth']['id']; ?>">
-
             <div>
-              
-              <input type="text" name="name" value="<?php echo $_SESSION['auth']['name']; ?>" class="form-control <?php if (isset($errors['name'])) : ?> is-invalid <?php endif; ?>" placeholder="Enter name">
+              <input type="text" name="name" value="<?php echo $user['name']; ?>" class="form-control <?php if (isset($errors['name'])) : ?> is-invalid <?php endif; ?>" placeholder="Enter name">
               <?php if (isset($errors['name'])) : ?>
                 <div class="invalid-feedback"><?php echo $errors['name']; ?></div>
               <?php endif; ?>
@@ -57,8 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <div class="d-flex justify-content-between mt-3">
-              <button type="submit" class="btn btn-primary" value="submit">Update</button>
-              <a href="./profile.php" class="btn btn-outline-secondary" value="reset">Cancel</a>
+              <button type="submit" class="btn btn-primary">Update</button>
+              <a href="/blog/profile.php" class="btn btn-outline-secondary">Cancel</a>
             </div>
           </form>
         </div>
