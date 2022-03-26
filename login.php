@@ -1,6 +1,7 @@
  <?php
   include_once './init.php';
-
+  include app_path('middleware/guest.php');
+  
   $errors = [];
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -100,9 +101,9 @@
              </div>
            </form>
            <br>
-           <div><a href="./register.php">
-               <p style="text-align:right">Creat account</p>
-             </a></div>
+           <div>
+               <p style="text-align:right"><a href="<?php echo url('register.php'); ?>">Creat account</a></p>
+             </div>
          </div>
        </div>
      </div>

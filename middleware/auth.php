@@ -1,5 +1,6 @@
 <?php
 
 if(!isset($_SESSION['auth'])) {
-    redirect('login.php');
+    redirect ('login.php');
 }
+?>

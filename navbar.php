@@ -50,7 +50,9 @@
         <li class="nav-item px-lg-4">
           <a class="nav-link text-uppercase text-expanded" href="index.php" id="title">Home</a>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="<?php echo url('post-create.php'); ?>">Create Post</a>
+        </li>
 
         <li class="nav-item px-lg-4" style="text-decoration: none; color: white;margin-top: 5px" id="title">
           <span class="fa fa-user-circle-o" style="font-size: 22px;"></span>

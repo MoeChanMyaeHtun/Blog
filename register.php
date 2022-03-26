@@ -3,7 +3,7 @@
 
 
 include_once './init.php';
-// include 'function.php';
+include app_path('middleware/guest.php');
 
     if(isset($_POST['register'])){
         $user_name=$_POST['name'];
